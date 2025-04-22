@@ -15,7 +15,7 @@ function onSubmit() {
 
     setTimeout(() => {
       div.style.opacity = '0';
-      div.addEventListener('transitionend', () => div.remove());
+      div.remove();
     }, 2000);
   }
 
