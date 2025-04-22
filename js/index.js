@@ -5,3 +5,18 @@ function loadJs() {
     jsLoaded.style.backgroundColor = "cornflowerblue";
 }
 loadJs();
+
+function onSubmit() {
+    const div = document.createElement('div');
+
+    div.className = 'auto-alert';
+    div.textContent = "Validé";
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+      div.style.opacity = '0';
+      div.addEventListener('transitionend', () => div.remove());
+    }, 2000);
+  }
+
+  
