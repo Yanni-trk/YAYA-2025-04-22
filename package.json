@@ -1,0 +1,17 @@
+{
+  "name": "dhl-2025-04-22",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.5"
+  }
+}

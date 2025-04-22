@@ -1,0 +1,25 @@
+#editor {
+    display: flex;
+}
+
+#editor>*:nth-child(1) {
+    flex-grow: 1;
+}
+
+#editor form {
+    text-align: center;
+    width: 200px;
+}
+
+#editor .cols input {
+    width: 60px;
+}
+
+#editor .cols {
+    display: flex;
+    justify-content: space-between;
+}
+
+#editor .cols>* {
+    width: 45%;
+}

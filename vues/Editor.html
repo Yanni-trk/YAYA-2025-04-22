@@ -1,0 +1,65 @@
+<div id="editor">
+    <div id="editor-left">
+        <svg width="100%" height="100%" viewBox="0 0 612 408" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <image xlink:href="https://media.istockphoto.com/id/1425207162/fr/photo/plan-en-studio-du-corgi-gallois-pembroke-attrapant-une-friandise.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=Y6K60Dh-rIg8KcxPf3ZPzrwkE0GkXfzVL2Uhhk8UUtQ=" x="0" y="0"></image>
+            <text x="5" y="250" font-size="115" fill="pink" font-weight="900" text-decoration="underline" font-style="italic">
+                I ♥ JS
+            </text>
+        </svg>
+    </div>
+    <div id="editor-right">
+        <form name="editor-form">
+            <h3>Contenu</h3>
+            <label for="editor_image">Image</label>
+            <br>
+            <select name="imageId" id="editor_image">
+                <option value="-1">Pas d'image</option>
+            </select>
+            <hr>
+            <label for="editor_text">Texte du meme</label>
+            <br>
+            <input type="text" name="text" id="editor_text" placeholder="texte du meme">
+            <hr>
+            <h3>Position</h3>
+            <div class="cols">
+                <div>
+                    <label for="editor_x">X</label><br>
+                    <input min="0" type="number" name="x" id="editor_x" value="0">
+                </div>
+                <div>
+                    <label for="editor_y">Y</label><br>
+                    <input min="0" type="number" name="y" id="editor_y" value="0">
+                </div>
+            </div>
+            <hr>
+            <h3>Style</h3>
+            <div class="cols">
+                <div>
+                    <label for="editor_font_size">Size</label><br>
+                    <input min="0" type="number" name="fontSize" id="editor_font_size" value="1">
+                </div>
+                <div>
+                    <label for="editor_font_weight">Weight</label><br>
+                    <input min="100" step="100" max="900" type="number" name="fontWeight" id="editor_font_weight" value="500">
+                </div>
+            </div>
+            <div class="cols">
+                <div>
+                    <label for="editor_underline">underline</label><br>
+                    <input type="checkbox" name="underline" id="editor_underline">
+                </div>
+                <div>
+                    <label for="editor_italic">italic</label><br>
+                    <input type="checkbox" name="italic" id="editor_italic">
+                </div>
+            </div>
+            <label for="editor_color">Color</label><br>
+            <input type="color" name="color" id="editor_color" value="#0ACAC0">
+            <hr>
+            <div class="cols">
+                <button type="reset" class="btn btn-danger">reset</button>
+                <button type="submit" class="btn btn-success">validation</button>
+            </div>
+        </form>
+    </div>
+</div>
