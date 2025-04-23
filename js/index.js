@@ -1,10 +1,21 @@
 
-function loadJs() {
+function loadJs(evt) {
+
+    console.log(evt);
     var jsLoaded = document.querySelector('#js-loaded');
     jsLoaded.innerHTML = "JS OK";
     jsLoaded.style.backgroundColor = "cornflowerblue";
+    jsLoaded.style.color ="tomato";
+    jsLoaded.remove();
 }
 loadJs();
+
+
+document.addEventListener('DOMContentLoaded',loadJs);
+
+
+
+
 
 function onSubmit() {
     const div = document.createElement('div');
