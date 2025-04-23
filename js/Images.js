@@ -1,38 +1,38 @@
-const REST_ADR='http://localhost:5679'
+const REST_ADR = 'http://localhost:5679'
 class Images extends Array {
     #ressourcePath;
     /**
      * constructeur d'image
      * @param {string} ressourcePath chemin dans le REST des images
      */
-    constructor(ressourcePath='/images') {
+    constructor(ressourcePath = '/images') {
         super();
         this.#ressourcePath = ressourcePath;
     }
 
     loadRessources() {
         fetch(REST_ADR + this.#ressourcePath)
-        .then(function (r) { return r.json() })
-        .then(function (arr) {
-            console.table(arr)
-        })
+            .then(r => r.json())
+            .then((arr) => {
+                this.splice(0);
+                this.push(...ar);
+                console.table(this)
+            })
 
     }
 
-    replaceImage(origineImage,newImage) {
-        return origineImage;
-    }
-   
-    /**
-     * remplacer d'image
-     * @param {ojbect} origineImage image a remplace
-     * @param {ojbect} newImage image de substitution 
-     * @return {object} image remplacé
-     */
-    
-    replaceImage(origineImage, newImage) {
-        return origineImage;
-    }
+}
+
+/**
+ * remplacer d'image
+ * @param {ojbect} origineImage image a remplace
+ * @param {ojbect} newImage image de substitution 
+ * @return {object} image remplacé
+ */
+
+replaceImage(origineImage, newImage) {
+    return origineImage;
+}
 
 }
 /**
