@@ -1,12 +1,24 @@
-class Images{
-    ressourcePath;
+const REST_ADR='http://localhost:5679'
+class Images extends Array {
+    #ressourcePath;
     /**
-     * 
+     * constructeur d'image
      * @param {string} ressourcePath chemin dans le REST des images
      */
-    constructor(ressourcePath) {
-        this.ressourcePath = ressourcePath;
+    constructor(ressourcePath='/images') {
+        super();
+        this.#ressourcePath = ressourcePath;
     }
+
+    loadRessources() {
+        fetch(REST_ADR + this.#ressourcePath)
+        .then(function (r) { return r.json() })
+        .then(function (arr) {
+            console.table(arr)
+        })
+
+    }
+
     replaceImage(origineImage,newImage) {
         return origineImage;
     }
@@ -27,3 +39,7 @@ class Images{
  * instance principale de toutes les images de l'app
  */
 const images = new Images();
+
+images.loadRessources();
+
+

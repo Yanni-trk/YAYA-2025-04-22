@@ -8,8 +8,6 @@ function loadJs(evt) {
     jsLoaded.style.color ="tomato";
     jsLoaded.remove();
 }
-loadJs();
-
 
 document.addEventListener('DOMContentLoaded',loadJs);
 

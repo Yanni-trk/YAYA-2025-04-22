@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "lite-server"
+    "start": "lite-server",
+    "json":"json-server -p 5679 db.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "json-server": "^0.17.4",
     "lite-server": "^2.6.1"
   },
   "dependencies": {
