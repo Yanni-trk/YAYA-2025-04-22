@@ -12,9 +12,6 @@ function loadJs(evt) {
 document.addEventListener('DOMContentLoaded',loadJs);
 
 
-
-
-
 function onSubmit() {
     const div = document.createElement('div');
 
