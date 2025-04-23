@@ -15,7 +15,7 @@ class Images extends Array {
             .then(r => r.json())
             .then((arr) => {
                 this.splice(0);
-                this.push(...ar);
+                this.push(...arr);
                 console.table(this)
             })
 
