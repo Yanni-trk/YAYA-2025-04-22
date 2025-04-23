@@ -30,11 +30,7 @@ class Images extends Array {
  * @return {object} image remplacé
  */
 
-replaceImage(origineImage, newImage) {
-    return origineImage;
-}
 
-}
 /**
  * instance principale de toutes les images de l'app
  */
