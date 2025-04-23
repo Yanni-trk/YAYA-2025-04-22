@@ -13,8 +13,8 @@ class Meme {
     imageId = -1;
     color = '#00000';
 
-    save(){
-        const adr=`${RES_ADR}${Meme.#ressourcePath}${undefined !== this.id ? `/`+ this.id : ''}`;
+    save() {
+        const adr = `${RES_ADR}${Meme.#ressourcePath}${undefined !== this.id ? `/`+ this.id : ''}`;
         fetch(adr,{
             method: this.id !== undefined ? 'PUT' : 'POST',
             headers: {"Content-Type" : "application/json"},
