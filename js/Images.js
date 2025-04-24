@@ -11,6 +11,7 @@ class Images extends Array {
     #loadPromise = undefined;
 
     get promiseImages(){
+        if(undefined=== this .#loadPromise)this.loadRessources();
         return this.#loadPromise;
     }
     set promiseImages(value){
@@ -28,7 +29,7 @@ class Images extends Array {
      * chargement rest des datas d'images
      */
     loadRessources() {
-        if(undefined !== this.#loadPromise)
+        if(undefined === this.#loadPromise)
       this.#loadPromise = fetch(REST_ADR + this.#ressourcePath)
             .then(r => r.json())
             .then((arr) => {
