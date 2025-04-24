@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "lite-server",
-    "json":"json-server -p 5679 db.json"
+    "start": "npm run json | npm run html",
+    "json":"json-server -p 5679 db.json",
+    "html":"lite-server"
   },
   "keywords": [],
   "author": "",
