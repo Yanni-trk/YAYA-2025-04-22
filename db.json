@@ -231,6 +231,71 @@
       "frameSizeX": 0,
       "frameSizeY": 0,
       "id": 15
+    },
+    {
+      "titre": "",
+      "text": "",
+      "x": 100,
+      "y": 20,
+      "fontWeight": "500",
+      "fontSize": 100,
+      "underline": false,
+      "italic": false,
+      "imageId": -1,
+      "color": "#000000",
+      "id": 16
+    },
+    {
+      "titre": "",
+      "text": "",
+      "x": 100,
+      "y": 20,
+      "fontWeight": "500",
+      "fontSize": 100,
+      "underline": false,
+      "italic": false,
+      "imageId": -1,
+      "color": "#000000",
+      "id": 17
+    },
+    {
+      "titre": "",
+      "text": "",
+      "x": 100,
+      "y": 20,
+      "fontWeight": "500",
+      "fontSize": 100,
+      "underline": false,
+      "italic": false,
+      "imageId": -1,
+      "color": "#000000",
+      "id": 18
+    },
+    {
+      "titre": "",
+      "text": "",
+      "x": 100,
+      "y": 20,
+      "fontWeight": "500",
+      "fontSize": 100,
+      "underline": false,
+      "italic": false,
+      "imageId": -1,
+      "color": "#000000",
+      "id": 19
+    },
+    {
+      "id": 20,
+      "titre": "",
+      "text": "d",
+      "x": 100,
+      "y": 20,
+      "fontWeight": "500",
+      "fontSize": 100,
+      "underline": false,
+      "italic": false,
+      "imageId": -1,
+      "color": "#000000"
     }
   ]
 }

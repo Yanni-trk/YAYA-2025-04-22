@@ -45,5 +45,6 @@ class Images extends Array {
 /**
  * instance principales de toutes les images de l'app
  */
-const images = new Images();
+
+export const images = new Images();
 images.loadRessources(()=>{});

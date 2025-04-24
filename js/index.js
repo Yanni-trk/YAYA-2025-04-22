@@ -1,14 +1,40 @@
-
 function loadJs(evt) {
 
     console.log(evt);
-    var jsLoaded = document.querySelector('#js-loaded');
+    const jsLoaded = document.querySelector('#js-loaded');
     jsLoaded.innerHTML = "JS OK";
     jsLoaded.style.backgroundColor = "cornflowerblue";
     jsLoaded.style.color ="tomato";
     jsLoaded.remove();
+    //loadEditorView();
+
 }
 
+  
+
+
+//loadHomeView ()
+function loadHomeView () {
+  fetch("/vues/home.html")
+  .then(r=>r.text())
+  .then((h) => {
+    document.querySelector("main").innerHTML += h;
+  
+  });
+  
+  }
+
+//loadEditorView ()
+function loadEditorView () {
+fetch("/vues/editor.html")
+.then(r=>r.text())
+.then((h) => {
+  document.querySelector("main").innerHTML += h;
+  loadEditor();
+
+});
+
+}
 document.addEventListener('DOMContentLoaded',loadJs);
 
 

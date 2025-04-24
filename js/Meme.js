@@ -1,27 +1,41 @@
-//const REST_ADR ='http://localhost:5679' 
+//const REST_ADR = 'http://localhost:5679'
 class Meme {
-    static #ressourcePath='/memes'
+    static #ressourcePath = "/memes";
     id = undefined;
-    titre = '';
-    text = '';
+    titre = "";
+    text = "";
     x = 100;
     y = 20;
-    fontWeight = '500';
+    fontWeight = "500";
     fontSize = 100;
-    underline = false; 
-    italic = false; 
+    underline = false;
+    italic = false;
     imageId = -1;
-    color = '#00000';
-
+    color = "#000000";
+  
     save() {
-        const adr = `${RES_ADR}${Meme.#ressourcePath}${undefined !== this.id ? `/`+ this.id : ''}`;
-        fetch(adr,{
-            method: this.id !== undefined ? 'PUT' : 'POST',
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify(this)
-
-        })
-       
-
+      const adr = `${REST_ADR}${Meme.#ressourcePath}${
+        undefined !== this.id ? "/" + this.id : ""
+      }`;
+      fetch(adr, {
+        method: this.id !== undefined ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(this),
+      })
+        .then((r) => r.json())
+        .then((m) => {
+          Object.assign(this, m);
+          return this;
+        });
     }
-}
+    /**
+     * constructeur d'instance
+     * @param {string} jsonStr chat string json d'un meme de REST
+     * @returns {Meme}  instance loadé avec valeurs de la chaine JSON
+     */
+    static getInstanceFromJSON(jsonStr) {
+      const meme = new Meme();
+      Object.assign(meme, JSON.parse(jsonStr));
+      return meme;
+    }
+  }

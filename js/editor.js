@@ -1,3 +1,4 @@
+import './images.js'
 /**
  *
  * @param {Images} mesImages
@@ -15,7 +16,7 @@ function loadComboImage(mesImages) {
 }
 function loadFormData(meme) {
   const form = document.forms["editor-form"];
-  form["text"].value.meme.text;
+  form["text"].value = meme.text;
   form["fontWeight"].value = meme.fontWeight;
   form["color"].value = meme.color;
   form["x"].value = meme.x;
@@ -45,10 +46,17 @@ function loadFormEvent() {
   }
 
   const form = document.forms["editor-form"];
+  form.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+    currentMeme.save();
+    // redrawSvg(currentMeme, editorSVGNode);
+  });
+
   form["text"].addEventListener("input", ontextinput);
   form["fontWeight"].addEventListener("input", ontextinput);
   form["x"].addEventListener("input", onnumberinput);
   form["y"].addEventListener("input", onnumberinput);
+  form["color"].addEventListener("input", ontextinput);
   form["fontSize"].addEventListener("input", onnumberinput);
   form["imageId"].addEventListener("input", onnumberinput);
   form["italic"].addEventListener("change", oncheckChange);
@@ -91,15 +99,20 @@ function redrawSvg(meme, node) {
   console.log(img);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+//document.addEventListener("DOMContentLoaded", loadJs);
+export default function loadEditor(){
+
+
   editorSVGNode = document.querySelector("#editor svg");
   imageSvgREFNode = editorSVGNode.querySelector("image");
   loadFormEvent();
+
   images.promiseImages.then((loadedImages) => {
     loadComboImage(loadedImages);
+    loadFormData(currentMeme);
+    redrawSvg(currentMeme, editorSVGNode);
   });
-});
+}
 
 let currentMeme = new Meme();
 let editorSVGNode = undefined;
-let imageSvgREFNode = undefined;
