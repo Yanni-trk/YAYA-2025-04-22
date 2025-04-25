@@ -1,6 +1,7 @@
 // import { loadEditor } from "../vues/editor/editor.js";
 // import { loadList } from "../vues/list/list.js";
 
+import { routes } from "./config.js";
 import { router } from "./router.js";
 
 function loadJs(evt) {
@@ -10,7 +11,8 @@ function loadJs(evt) {
   jsLoaded.style.backgroundColor = "skyblue";
   jsLoaded.style.color = "tomato";
   jsLoaded.remove();
-  router.initRoute(location.pathname, document.querySelector("main"));
+  router.instanciateLinks(document.body);
+  router.initRoute(routes,location.pathname, document.querySelector("main"));
 }
 
 document.addEventListener("DOMContentLoaded", loadJs);
