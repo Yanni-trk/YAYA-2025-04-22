@@ -1,5 +1,5 @@
 //const REST_ADR = 'http://localhost:5679'
-class Meme {
+export class Meme {
     static #ressourcePath = "/memes";
     id = undefined;
     titre = "";
