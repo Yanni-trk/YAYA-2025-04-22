@@ -40,4 +40,5 @@ function loadEditorView() {
       loadEditor();
     });
 }
+
 document.addEventListener("DOMContentLoaded", loadJs);
