@@ -1,4 +1,5 @@
-const REST_ADR = 'http://localhost:5679'
+import { REST_ADR } from "../config.js";
+
 /**
  * class pour la manipulation du REST
  */
@@ -36,7 +37,7 @@ class Images extends Array {
                 .then((arr) => {
                     this.splice(0);
                     this.push(...arr);
-                    console.table(this);
+                    //console.table(this);
                     return this;
                 })
         }
@@ -48,4 +49,4 @@ class Images extends Array {
  * instance principales de toutes les images de l'app
  */
 export  const images = new Images();
-images.loadRessources();
+//images.loadRessources();

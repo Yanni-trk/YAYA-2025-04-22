@@ -1,4 +1,5 @@
-//const REST_ADR = 'http://localhost:5679'
+import { REST_ADR } from "../config.js";
+
 export class Meme {
   static #ressourcePath = "/memes";
   id = undefined;
