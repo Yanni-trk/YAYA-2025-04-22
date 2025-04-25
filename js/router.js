@@ -82,8 +82,18 @@ class Router {
     this.viewContextNode = viewContextNode;
     this.#instanciateRoute(path);
     console.log(this.currentRoute);
-    window.addEventListener("popstate", () => {
-      this.#instanciateRoute(location.path);
+    window.addEventListener("popstate", (evt) => {
+      evt.preventDefault();
+      this.#instanciateRoute(location.pathname);
+    });
+  }
+  instanciateLinks(context) {
+    context.querySelectorAll("a").forEach((a) => {
+      if (!a.href.startsWith(location.origin)) return;
+      a.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        this.navigate(a.href.replace(location.origin, ""));
+      });
     });
   }
   #instanciateRoute(path) {
@@ -95,8 +105,18 @@ class Router {
       .then((htmlResponse) => htmlResponse.text())
       .then((htmlTemplate) => {
         this.viewContextNode.innerHTML = htmlTemplate;
-        if (this.currentRoute.onContentLoaded) {
-          this.currentRoute.onContentLoaded(this.currentRoute.params);
+        try {
+          if (this.currentRoute.onContentLoaded) {
+            this.currentRoute.onContentLoaded(() => {
+              this.instanciateLinks(this.viewContextNode);
+            }, this.currentRoute.params);
+          } else {
+            this.instanciateLinks(this.viewContextNode);
+            // throw new Error() ;
+          }
+        } catch {
+          this.currentRoute = errorRoutes[500];
+          this.#instanciateRoute();
         }
       });
   }
