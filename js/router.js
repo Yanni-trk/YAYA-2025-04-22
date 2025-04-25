@@ -29,6 +29,10 @@ const errorRoutes = {
     name: "404 NOT FOUND",
     templateUrl: "/vues/errors/404.html",
   },
+  500: {
+    name: "500 NOT FOUND",
+    templateUrl: "/vues/errors/500.html",
+  },
 };
 const routes = [
   {
@@ -38,11 +42,9 @@ const routes = [
   },
   {
     name: "editor",
-    path: "/editor",
+    path: /^\/editor(\/(?<id>\d+))?\/?$/,
     templateUrl: "/vues/editor/Editor.html",
-    onContentLoaded: () => {
-      loadEditor();
-    },
+    onContentLoaded: loadEditor,
   },
 ];
 class Router {
@@ -51,7 +53,19 @@ class Router {
   currentRoute;
   #getCurrentRouteFromPath(path) {
     this.currentRoute = routes.find((route) => {
-      return path === route.path;
+      if (route.path instanceof RegExp) {
+        const regexResult = route.path.exec(path);
+        if (regexResult === null) return false;
+        else {
+          route.params = regexResult.groups;
+          console.log(regexResult);
+          return true;
+        }
+      } else if (path === route.path) {
+        return true;
+      } else {
+        return false;
+      }
     });
     this.currentPath = path;
     if (undefined === this.currentRoute) {
@@ -60,15 +74,21 @@ class Router {
     return this.currentRoute;
   }
   navigate(path) {
-    this.#getCurrentRouteFromPath(path);
-    this.#loadTemplateInView();
+    this.#instanciateRoute(path);
+    history.pushState(undefined, undefined, path);
     console.log(this.currentRoute);
   }
   initRoute(path, viewContextNode) {
     this.viewContextNode = viewContextNode;
+    this.#instanciateRoute(path);
+    console.log(this.currentRoute);
+    window.addEventListener("popstate", () => {
+      this.#instanciateRoute(location.path);
+    });
+  }
+  #instanciateRoute(path) {
     this.#getCurrentRouteFromPath(path);
     this.#loadTemplateInView();
-    console.log(this.currentRoute);
   }
   #loadTemplateInView() {
     fetch(this.currentRoute.templateUrl)
@@ -76,9 +96,10 @@ class Router {
       .then((htmlTemplate) => {
         this.viewContextNode.innerHTML = htmlTemplate;
         if (this.currentRoute.onContentLoaded) {
-          this.currentRoute.onContentLoaded();
+          this.currentRoute.onContentLoaded(this.currentRoute.params);
         }
       });
   }
 }
 export const router = new Router();
+window.forceNav = (path) => router.navigate(path);

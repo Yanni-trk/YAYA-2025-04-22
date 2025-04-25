@@ -1,8 +1,7 @@
-// import { images } from "./Images.js";
-// import { Meme } from "./Meme.js";
-
 import { images } from "../../js/metier/Images.js";
 import { Meme } from "../../js/metier/Meme.js";
+import { memes } from "../../js/metier/Memes.js";
+import { router } from "../../js/router.js";
 
 /**
  * chargement du comboBox de formulaire
@@ -94,7 +93,7 @@ function redrawSvg(meme, node) {
   // console.log(img);
 }
 //document.addEventListener("DOMContentLoaded",
-export function loadEditor() {
+export function loadEditor(params) {
   editorSVGNode = document.querySelector("#editor svg");
   imageSvgREFNode = editorSVGNode.querySelector("image");
   loadFormEvent();
@@ -104,10 +103,22 @@ export function loadEditor() {
     loadFormData(currentMeme);
     redrawSvg(currentMeme, editorSVGNode);
   });
+  if (params && params.id) {
+    if (typeof params.id === "string") params.id = Number(params.id);
+    memes.promiseMemes.then((ms) => {
+      currentMeme = ms.find((m) => m.id === params.id);
+      if (undefined === currentMeme) {
+        router.navigate("/");
+        return;
+      }
+      loadFormData(currentMeme);
+      redrawSvg(currentMeme, editorSVGNode);
+    });
+  } else {
+    currentMeme = new Meme();
+  }
 }
-let currentMeme = Meme.getInstanceFromJSON(
-  `{"id": 1,"titre": "Long wait","text": "Long wait","x": 100,"y": 20,"fontWeight": "900","fontSize": 100,"underline": true,"italic": false,"imageId": 3,"color": "#000000","frameSizeX": 0,"frameSizeY": 0}`
-);
-// let currentMeme = new Meme();
-let editorSVGNode ;
+// let currentMeme = Meme.getInstanceFromJSON(`{"id": 1,"titre": "Long wait","text": "Long wait","x": 100,"y": 20,"fontWeight": "900","fontSize": 100,"underline": true,"italic": false,"imageId": 3,"color": "#000000","frameSizeX": 0,"frameSizeY": 0}`);
+let currentMeme = new Meme();
+let editorSVGNode;
 let imageSvgREFNode;
